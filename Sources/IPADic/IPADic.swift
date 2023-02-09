@@ -1,6 +1,6 @@
 //
 //  IPADic.swift
-//  
+//
 //
 //  Created by Morten Bertz on 2021/06/22.
 //
@@ -12,29 +12,29 @@ import Dictionary
 A wrapper around IPADic. A number of dictionaries for mecan can be found on the internet. Different dictionaries privde different features (POS tagging etc), and so far I have not been able to get this information out of mecab at runtime. The dictionary scheme is contained in the dicrc file.
 */
 public struct IPADic: DictionaryProviding{
-    
+
     public let url:URL
-    
+
     public init(){
-        self.url = Bundle.module.url(forResource: "ipadic dictionary", withExtension: nil)!
+        self.url = Bundle.module.url(forResource: "ipadicDictionary", withExtension: nil)!
     }
-    
+
     public var description: String{
         return "Dictionary: \(url), Type: IPADic"
     }
-    
+
     public var dictionaryFormIndex: Int {
             return 6
     }
-    
+
     public var readingIndex:Int{
             return 7
     }
-    
+
     public var pronunciationIndex:Int{
        return 8
     }
-    
+
     public func partOfSpeech(posID: UInt16) -> PartOfSpeech {
         switch posID {
         case 3...9:

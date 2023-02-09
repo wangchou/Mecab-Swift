@@ -12,15 +12,15 @@ let package = Package(
         .library(
             name: "Mecab-Swift",
             targets: ["Mecab-Swift"]),
-        
+
         .library(
                 name: "IPADic",
                 targets: ["IPADic"]),
-        
+
         .library(
             name: "CharacterFilter",
             targets: ["CharacterFilter"]),
-        
+
         .library(
             name: "StringTools",
             targets: ["StringTools"])
@@ -33,24 +33,24 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(name: "Dictionary"),
-        
+
         .target(
             name: "Mecab-Swift",
             dependencies: ["mecab", "StringTools", "Dictionary"]),
 
         .target(name: "CharacterFilter"),
         .target(name: "StringTools"),
-        
-        .target(name: "IPADic", dependencies: ["Dictionary"], resources: [.copy("ipadic dictionary")]),
-        
+
+        .target(name: "IPADic", dependencies: ["Dictionary"], resources: [.copy("ipadicDictionary")]),
+
         .testTarget(
             name: "Mecab-SwiftTests",
             dependencies: ["Mecab-Swift", "CharacterFilter", "IPADic"]),
-        
+
         .testTarget(
             name: "StringToolsTests",
             dependencies: ["StringTools"]),
-        
+
         .target(name: "mecab", dependencies: [],
                 path: "Sources/mecab/mecab",
                 exclude: ["src/mecab-cost-train.cpp",
@@ -101,9 +101,9 @@ let package = Package(
                           "NEWS",
                           "README",
                           "stamp-h.in",
-                          
+
                 ],
-                
+
                 sources: ["src"],
                 resources: [.copy("BSD"), .copy("COPYING")],
                 publicHeadersPath: "swift",
