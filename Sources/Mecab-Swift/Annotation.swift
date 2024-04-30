@@ -21,23 +21,27 @@ public struct Annotation:Equatable, FuriganaAnnotating{
     
     public let base:String
     public let reading:String
+    public let pronunciation: String
     public let partOfSpeech:PartOfSpeech
     public let posId: UInt16
     public let range:Range<String.Index>
+    public let rawFeatures: [String]
     public let dictionaryForm:String
     let transliteration:Tokenizer.Transliteration
     
     init(token:Token, range:Range<String.Index>, transliteration:Tokenizer.Transliteration) {
-        self.init(base: token.original, reading: token.reading, range: range, dictionaryForm: token.dictionaryForm, transliteration: transliteration, POS: token.partOfSpeech, posId: token.posId)
+      self.init(base: token.original, reading: token.reading, range: range, dictionaryForm: token.dictionaryForm, transliteration: transliteration, POS: token.partOfSpeech, posId: token.posId, pronunciation: token.pronunciation, rawFeatures: token.features)
     }
     
-    init(base:String, reading:String, range:Range<String.Index>, dictionaryForm:String, transliteration:Tokenizer.Transliteration, POS:PartOfSpeech = .unknown, posId: UInt16 = 0){
+  init(base:String, reading:String, range:Range<String.Index>, dictionaryForm:String, transliteration:Tokenizer.Transliteration, POS:PartOfSpeech = .unknown, posId: UInt16 = 0, pronunciation: String="", rawFeatures: [String] = []){
         self.base=base
         self.range=range
         self.partOfSpeech = POS
         self.posId = posId
         self.transliteration = transliteration
-        
+        self.pronunciation = pronunciation
+        self.rawFeatures = rawFeatures
+
         switch transliteration {
         case .katakana:
             self.reading=reading

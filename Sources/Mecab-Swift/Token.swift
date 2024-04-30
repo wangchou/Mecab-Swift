@@ -41,7 +41,7 @@ struct Token{
         }
         return self.surface
     }
-    
+
     var pronunciation:String{
         if self.features.count > self.tokenDescription.pronunciationIndex{
             return self.features[self.tokenDescription.pronunciationIndex]
